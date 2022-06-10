@@ -1,14 +1,18 @@
-<div class="wrapper fadeInDown">
-    <div id="formContent">
-        <div class="alert alert-warning" *ngIf="invalidLogin">{{errorMessage}}</div>
-        <div class="alert alert-success" *ngIf="loginSuccess">{{successMessage}}</div>
-
-        <h3>Login</h3>
-
-        <form>
-            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" [(ngModel)]="username">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" [(ngModel)]="password">
-            <input type="submit" (click)="handleLogin()" class="fadeIn fourth" value="Log in">
-        </form>
-    </div>
-</div>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+      <form class="example-form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Username">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+      </form>
+    </mat-card>
+  </div>
