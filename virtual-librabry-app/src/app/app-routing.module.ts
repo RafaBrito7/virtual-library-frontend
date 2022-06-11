@@ -9,7 +9,8 @@ import { UserAuthenticatedGuard } from './services/guards/user-authenticated.gua
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [UserNoAuthenticateGuard] },
-  { path: '', component: DashboardComponent, canActivate: [UserAuthenticatedGuard],
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: DashboardComponent, canActivate: [UserAuthenticatedGuard],
     children: [
       { path: 'register', component: RegisterComponent }
     ],

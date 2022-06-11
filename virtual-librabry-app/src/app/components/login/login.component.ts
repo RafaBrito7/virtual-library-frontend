@@ -3,6 +3,7 @@ import { AuthenticationService } from '../../services/authentication.service'
 
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
   ngForm: FormGroup;
 
 
-  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder) {
+  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder, 
+    private router: Router) {
    }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(() => {
       this.clearFields();
       console.log("Login Successful!");
+      this.router.navigate(['home']);
     }, (error) => {
       if (error.status == 401 || error.status == 403) {
         this.errorAlert("Error: Http " + error.status, error.error.message);
@@ -55,7 +58,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  get emailValidator(){
+  emailValidator(){
     return this.ngForm.get("username");
   }
 

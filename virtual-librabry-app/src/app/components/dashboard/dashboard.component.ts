@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +10,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  userObject: any;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    if (!this.userService.isUserInStorage()) {
+      this.loadUser();
+    }
+  }
+
+  loadUser(){
+    this.userService.getLoggedUser().subscribe((response: any) => {
+      this.userObject = {
+        name: response.name,
+        username: response.email,
+        profile: response.profile,
+        id: response.resourceHyperIdentifier,
+        status: response.status,
+        rentedBooks: response.rentedBooks,
+        createdDate: response.createdDate
+    };
+    this.setUser();
+    }, (error) => {
+      let message = error.error == null ? error.message : error.error.message
+      this.errorAlert('Error HTTP ' + error.status, 'Caused by: ' + message);
+      if (error.status == 500) {
+        this.userService.logout();
+      }
+      console.log(error);
+    });
+  }
+
+  setUser(){
+    localStorage.setItem('user', JSON.stringify(this.userObject));
+  }
+
+  errorAlert(title: string, text: string) {
+    Swal.fire({
+      icon: 'error',
+      title: title,
+      text: text,
+    })
+  }
+
+  goToUserView(){
+    console.log("Entrou!")
   }
 
 }

@@ -7,8 +7,15 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+  userName: string;
+
   constructor(private userService: UserService) { }
+
   ngOnInit(): void {
+    if (this.isLogged()) {
+      this.getUser();
+    }
   }
 
   logout(){
@@ -17,5 +24,11 @@ export class AppComponent implements OnInit {
 
   isLogged() : boolean{
     return this.userService.isUserLogged();
+  }
+
+  getUser(){
+    let user = this.userService.getLoggedUserObject();
+    debugger;
+    this.userName = user.name;
   }
 }

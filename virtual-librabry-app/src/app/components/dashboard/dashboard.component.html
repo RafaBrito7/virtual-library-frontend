@@ -1,1 +1,43 @@
-<p>dashboard works!</p>
+<div class="grid-container">
+    <h1 class="mat-h1">Dashboard</h1>
+    <mat-grid-list cols="1" rows="1" rowHeight="2:1">
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <div class="dashboard-title">
+                        <mat-card-title>
+                            Welcome to Virtual Library App!
+                        </mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content class="dashboard-card-content">
+                    <h2>Select the operation you want to perform</h2>
+                    <mat-grid-list cols="2" rowHeight="2:1">
+                        <mat-grid-tile>
+                            <a (click)="goToUserView()" style="cursor: pointer;">
+                                <mat-card class="dashboard-subcard">
+                                    <mat-card-title>
+                                        User
+                                    </mat-card-title>
+                                    <mat-card-subtitle>Only for admin users</mat-card-subtitle>
+                                    <mat-icon class="subcard-icon">person</mat-icon>
+                                </mat-card>
+                            </a>
+                        </mat-grid-tile>
+                        <mat-grid-tile>
+                            <a (click)="goToUserView()" style="cursor: pointer;">
+                                <mat-card class="dashboard-subcard">
+                                    <mat-card-title>
+                                        Book
+                                    </mat-card-title>
+                                    <mat-card-subtitle>Book Operations</mat-card-subtitle>
+                                    <mat-icon class="subcard-icon">library_books</mat-icon>
+                                </mat-card>
+                            </a>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

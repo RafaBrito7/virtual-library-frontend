@@ -29,16 +29,19 @@ export class AuthenticationService {
     return this.http.post(environment.hostUrl + `/login`, userDTO, this.httpOptions).pipe(map((response) => {
       this.username = username;
       this.password = password;
+      console.log(response);
       let resp = JSON.parse(JSON.stringify(response));
       this.registerSuccessfulLogin(resp.token);
     }));
   }
 
   registerSuccessfulLogin(clientToken: string) {
+    console.log(clientToken);
     sessionStorage.setItem('token', clientToken);
   }
 
   logout(){
+    sessionStorage.clear();
     localStorage.clear();
     this.router.navigate(['login']);
   }
