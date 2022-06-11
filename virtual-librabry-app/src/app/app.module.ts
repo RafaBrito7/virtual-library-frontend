@@ -13,6 +13,9 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

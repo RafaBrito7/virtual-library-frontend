@@ -1,0 +1,16 @@
+.icon-display {
+    transform: scale(1);
+    padding-bottom: 0;
+    margin-bottom: 0;
+ }
+
+ .span-error {
+     color: red;
+     text-align: center;
+     justify-content: center;
+ }
+
+ #logo {
+     width: auto;
+     height: 8rem;
+ }

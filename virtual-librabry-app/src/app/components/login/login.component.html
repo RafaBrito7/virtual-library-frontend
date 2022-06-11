@@ -1,18 +1,29 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
-      </mat-card-header>
-      <form class="example-form">
+  <mat-card class="box">
+    <mat-card-header>
+      <img id="logo" src="/assets/images/logo.png" alt="logo-virtual-library">
+      <mat-card-title>Virtual Library</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="ngForm">
+      <div class="form-group">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
+            <input matInput placeholder="Email" required type="email" name="username" formControlName="username"
+              [(ngModel)]="username">
           </mat-form-field>
+          <span class="span-error" [hidden]="!isEmailInvalid()">
+            <mat-icon class="icon-display">report_problem</mat-icon>
+            Invalid email formatting.
+          </span>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
+            <input matInput placeholder="Password" required type="password" name="password" formControlName="password"
+              [(ngModel)]="password">
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
-      </form>
-    </mat-card>
-  </div>
+        <button mat-stroked-button color="accent" [disabled]="ngForm.invalid || isEmailInvalid()" class="btn-block"
+          (click)="authLogin()">Log
+          in</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
