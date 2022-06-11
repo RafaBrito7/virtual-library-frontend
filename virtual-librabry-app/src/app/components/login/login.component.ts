@@ -28,23 +28,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.ngForm = this.formBuilder.group({
-      username: ["", Validators.required, Validators.pattern("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/")],
+      username: ["", Validators.required],
       password: ["", Validators.required]
     })
   }
 
   authLogin() {
-    this.authService.login(this.username, this.password).subscribe((result) => {
-      this.invalidLogin = false;
-      this.loginSuccess = true;
-      this.successMessage = "Login Successful!";
-
+    this.authService.login(this.username, this.password).subscribe(() => {
+      this.clearFields();
+      console.log("Login Successful!");
     }, (error) => {
       if (error.status == 401 || error.status == 403) {
         this.errorAlert("Error: Http " + error.status, error.error.message);
       } else {
-        this.errorAlert("Oops...", "Something went wrong!")
+        this.errorAlert("Oops...", "An unknown error has occurred, contact your system administrator.");
       }
+      this.clearFields();
     });
   }
 
@@ -57,17 +56,21 @@ export class LoginComponent implements OnInit {
   }
 
   get emailValidator(){
-    return this.ngForm.get("username")
+    return this.ngForm.get("username");
   }
 
   isEmailInvalid() {
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.ngForm.get("username")?.value) 
       || this.ngForm.get("username")?.value == null) {
       this.emailInvalid = false;
-      return (false)
+      return (false);
     }
     this.emailInvalid = true;
-    return (true)
+    return (true);
+  }
+
+  clearFields(){
+    this.ngForm.reset();
   }
 
 }

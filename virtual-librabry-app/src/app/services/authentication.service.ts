@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators'
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,13 @@ export class AuthenticationService {
     
   };
 
-  constructor(public http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(username: string, password: string) {
     let userDTO = {
       email: username,
       password: password
     };
-    
     return this.http.post(environment.hostUrl + `/login`, userDTO, this.httpOptions).pipe(map((response) => {
       this.username = username;
       this.password = password;
@@ -35,7 +35,11 @@ export class AuthenticationService {
   }
 
   registerSuccessfulLogin(clientToken: string) {
-    console.log('token:' + clientToken);
     sessionStorage.setItem('token', clientToken);
+  }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }
