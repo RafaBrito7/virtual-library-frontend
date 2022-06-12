@@ -1,10 +1,21 @@
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="app-header">
   <div><a href="https://www.positronx.io" target="_blank" class="positronx">Virtual Library</a></div>
+  <div fxFlex></div>
+  <div class="menu-btns" *ngIf="isLogged()">
+    <button mat-button (click)="goToUserView()">USERS</button>
+    <button mat-fab color="" (click)="goToHomeView()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button (click)="goToBookView()">BOOKS</button>
+  </div>
+  <div fxFlex></div>
   <span class="nav-tool-items">
     <a mat-button routerLink="login" routerLinkActive="active" [hidden]="isLogged()">Login</a>
     <div *ngIf="isLogged()" class="logged-icons">
-      <span><mat-icon>person</mat-icon>{{userName}}</span>
+      <span>
+        <mat-icon>person</mat-icon>{{userName}}
+      </span>
       <button mat-icon-button (click)="logout()" [hidden]="!isLogged()">
         <mat-icon>logout</mat-icon>
       </button>

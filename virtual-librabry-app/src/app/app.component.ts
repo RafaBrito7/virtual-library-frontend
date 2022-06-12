@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit {
 
   userName: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.isLogged()) {
@@ -29,5 +30,17 @@ export class AppComponent implements OnInit {
   getUser(){
     let user = this.userService.getLoggedUserObject();
     this.userName = user.name;
+  }
+
+  goToUserView(){
+    this.router.navigate(['users']);
+  }
+
+  goToHomeView(){
+    this.router.navigate(['home']);
+  }
+
+  goToBookView(){
+    this.router.navigate(['books']);
   }
 }

@@ -46,8 +46,6 @@ export class UsersComponent implements OnInit {
         count = count + 1;
         list.push(userObject);
       });
-      console.log(response);
-      console.log(this.userList);
       this.userList = list;
       this.matTable.renderRows();
     }, (error) => {
