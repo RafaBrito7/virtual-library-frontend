@@ -5,8 +5,14 @@
             <mat-card class="dashboard-card">
                 <mat-card-header>
                     <div mat-card-avatar></div>
-                    <mat-card-title>Users List</mat-card-title>
-                    <mat-card-subtitle>All users in system</mat-card-subtitle>
+                    <mat-card-title>Users Menu</mat-card-title>
+                    <mat-card-subtitle>On this screen you can create users, view all users on your system and delete users</mat-card-subtitle>
+                    <div fxFlex></div>
+                    <mat-card-actions align="end">
+                        <div fxFlex></div>
+                        <button mat-button (click)="refresh()">REFRESH</button>
+                        <button mat-button>CREATE</button>
+                    </mat-card-actions>
                 </mat-card-header>
                 <mat-card-content>
                     <table mat-table #matTable [dataSource]="userList" class="mat-elevation-z8">

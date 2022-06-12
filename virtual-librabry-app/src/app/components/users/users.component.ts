@@ -21,13 +21,14 @@ export class UsersComponent implements OnInit {
 
   @ViewChild('matTable') matTable: MatTable<UserDTO>;
 
-  userList: UserDTO[] = this.fetchAllUsers();
+  userList: UserDTO[] = [];
 
   displayedColumns: string[] = ['position', 'name', 'status', 'profile', 'email'];
 
   constructor(private userService: UserService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
+    this.fetchAllUsers();
   }
 
   fetchAllUsers(): UserDTO[]{
@@ -47,12 +48,19 @@ export class UsersComponent implements OnInit {
       });
       console.log(response);
       console.log(this.userList);
+      this.userList = list;
       this.matTable.renderRows();
     }, (error) => {
       console.log(error);
     });
       
     return list;
+  }
+
+  refresh(){
+    this.userList = [];
+    this.fetchAllUsers();
+    this.matTable.renderRows();
   }
 
 }
