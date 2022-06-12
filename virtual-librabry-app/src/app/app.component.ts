@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
 
   getUser(){
     let user = this.userService.getLoggedUserObject();
-    debugger;
     this.userName = user.name;
   }
 }

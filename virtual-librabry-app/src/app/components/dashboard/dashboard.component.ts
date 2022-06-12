@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
@@ -12,7 +13,7 @@ export class DashboardComponent implements OnInit {
 
   userObject: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     if (!this.userService.isUserInStorage()) {
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  loadUser(){
+  loadUser() {
     this.userService.getLoggedUser().subscribe((response: any) => {
       this.userObject = {
         name: response.name,
@@ -30,19 +31,17 @@ export class DashboardComponent implements OnInit {
         status: response.status,
         rentedBooks: response.rentedBooks,
         createdDate: response.createdDate
-    };
-    this.setUser();
+      };
+      this.setUser();
     }, (error) => {
       let message = error.error == null ? error.message : error.error.message
       this.errorAlert('Error HTTP ' + error.status, 'Caused by: ' + message);
-      if (error.status == 500) {
-        this.userService.logout();
-      }
       console.log(error);
+      this.userService.logout();
     });
   }
 
-  setUser(){
+  setUser() {
     localStorage.setItem('user', JSON.stringify(this.userObject));
   }
 
@@ -54,8 +53,8 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  goToUserView(){
-    console.log("Entrou!")
+  goToUserView() {
+    this.router.navigate(['users']);
   }
 
 }
