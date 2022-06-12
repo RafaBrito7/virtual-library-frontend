@@ -57,4 +57,8 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['users']);
   }
 
+  goToBookView (){
+    this.router.navigate(['books']);
+  }
+
 }

@@ -1,41 +1,41 @@
 .grid-container {
-    margin: 20px;
-  }
-  
-  .dashboard-card {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    display: flexbox;
-    height: auto;
-  }
+  margin: 20px;
+}
 
-  .dashboard-title {
-    text-align: center;
-    display: flex;
-    align-items: center;
-  }
-  
-  .more-button {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-  
-  .dashboard-card-content {
-    text-align: center;
-  }
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  display: flexbox;
+  height: fit-content;
+}
 
-  table {
-    width: 100%;
-  }
+.dashboard-title {
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
 
-  .mat-elevation-z8{
-      text-align: center;
-  }
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
 
-  .mat-elevation-z8 th{
-    text-align: center;
+.dashboard-card-content {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-elevation-z8 {
+  text-align: center;
+}
+
+.mat-elevation-z8 th {
+  text-align: center;
 }

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   hostUrl: 'http://localhost:8080',
-  userUrl: '/api/user'
+  userUrl: '/api/user',
+  bookUrl: '/api/book'
 };
 
 /*

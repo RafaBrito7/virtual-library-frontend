@@ -1,0 +1,53 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Users</h1>
+    <mat-grid-list cols="1" rows="1" rowHeight="1:1">
+        <mat-grid-tile>
+            <mat-card class="dashboard-card">
+                <mat-card-header>
+                    <div mat-card-avatar></div>
+                    <mat-card-title>Books Menu</mat-card-title>
+                    <mat-card-subtitle>On this screen you can create books, view all books on library and rent a book or
+                        refund
+                        users</mat-card-subtitle>
+                    <div fxFlex></div>
+                    <mat-card-actions align="end">
+                        <div fxFlex></div>
+                        <button mat-button (click)="refresh()">REFRESH</button>
+                        <button mat-button [disabled]="true">CREATE</button>
+                    </mat-card-actions>
+                </mat-card-header>
+                <mat-card-content>
+                    <table mat-table #matTable [dataSource]="bookList" class="mat-elevation-z8">
+                        <ng-container matColumnDef="title">
+                            <th mat-header-cell *matHeaderCellDef> Title </th>
+                            <td mat-cell *matCellDef="let book"> {{book.title}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="category">
+                            <th mat-header-cell *matHeaderCellDef> Category </th>
+                            <td mat-cell *matCellDef="let book"> {{book.category}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="inventory">
+                            <th mat-header-cell *matHeaderCellDef> Inventory </th>
+                            <td mat-cell *matCellDef="let book"> {{book.inventory}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="available">
+                            <th mat-header-cell *matHeaderCellDef> Available </th>
+                            <td mat-cell *matCellDef="let book"> {{book.available}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <th mat-header-cell *matHeaderCellDef> Status </th>
+                            <td mat-cell *matCellDef="let book"> {{book.status}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

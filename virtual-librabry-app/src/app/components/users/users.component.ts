@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 export interface UserDTO {
   name: string;
@@ -51,7 +52,6 @@ export class UsersComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
-      
     return list;
   }
 
@@ -59,6 +59,14 @@ export class UsersComponent implements OnInit {
     this.userList = [];
     this.fetchAllUsers();
     this.matTable.renderRows();
+  }
+
+  errorAlert(title: string, text: string) {
+    Swal.fire({
+      icon: 'error',
+      title: title,
+      text: text,
+    })
   }
 
 }

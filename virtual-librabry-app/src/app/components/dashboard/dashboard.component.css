@@ -9,6 +9,7 @@
     right: 15px;
     bottom: 15px;
     display: flexbox;
+    height: fit-content;
   }
 
   .dashboard-title {

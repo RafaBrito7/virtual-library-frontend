@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
+import { BooksComponent } from './components/books/books.component';
 
 
 
@@ -25,7 +26,8 @@ import { UsersComponent } from './components/users/users.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    UsersComponent
+    UsersComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
