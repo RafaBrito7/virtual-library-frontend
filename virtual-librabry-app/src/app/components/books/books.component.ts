@@ -39,7 +39,6 @@ export class BooksComponent implements OnInit {
     this.bookService.fetchAllBooks().subscribe((response: any) => {
       this.bookList = response;
       this.matTable.renderRows();
-      console.log(response);
     }, (error) => {
       console.log(error);
     });

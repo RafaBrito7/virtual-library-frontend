@@ -3,6 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BasedUrlUtil } from '../utils/based.url.util';
 import { AuthenticationService } from './authentication.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { AuthenticationService } from './authentication.service';
 })
 export class UserService{
 
-  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080/api/user';
+  private basedUrl = BasedUrlUtil.getBasedUrlUser();
 
   private token: string;
 

@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators'
 import { Router } from '@angular/router';
+import { BasedUrlUtil } from '../utils/based.url.util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080';
+  private basedUrl = BasedUrlUtil.getBasedUrl();
 
   public username: string;
   public password: string;
@@ -31,14 +32,12 @@ export class AuthenticationService {
     return this.http.post(this.basedUrl + `/login`, userDTO, this.httpOptions).pipe(map((response) => {
       this.username = username;
       this.password = password;
-      console.log(response);
       let resp = JSON.parse(JSON.stringify(response));
       this.registerSuccessfulLogin(resp.token);
     }));
   }
 
   registerSuccessfulLogin(clientToken: string) {
-    console.log(clientToken);
     sessionStorage.setItem('token', clientToken);
   }
 

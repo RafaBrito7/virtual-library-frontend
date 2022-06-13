@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { BasedUrlUtil } from '../utils/based.url.util';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { UserService } from './user.service';
 })
 export class BookService {
 
-  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080/api/book';
+  private basedUrl = BasedUrlUtil.getBasedUrlBook();
 
   private token: string;
 
