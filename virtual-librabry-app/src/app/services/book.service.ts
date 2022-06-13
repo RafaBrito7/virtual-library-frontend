@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { BookDTO } from '../components/books/books.component';
 import { BasedUrlUtil } from '../utils/based.url.util';
 import { UserService } from './user.service';
 
@@ -36,5 +37,13 @@ export class BookService {
     fetchAllBooks(){
       this.buildHeaders();
       return this.httpClient.get(this.basedUrl + `/list`, this.httpOptions);
+    }
+
+    fetchCategories(){
+      return this.httpClient.get(this.basedUrl + `/list-categories`, this.httpOptions);
+    }
+
+    saveBook(bookDTO: any){
+      return this.httpClient.post(this.basedUrl + `/create`, bookDTO, this.httpOptions);
     }
 }

@@ -4,6 +4,7 @@ import { MatTable } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 import { CreateBookModalComponent } from './modals/create-book-modal/create-book-modal.component';
 
 export interface BookDTO {
@@ -41,6 +42,7 @@ export class BooksComponent implements OnInit {
       this.matTable.renderRows();
     }, (error) => {
       console.log(error);
+      this.errorAlert("Error: Http " + error.status, error.error.message);
     });
   }
 
@@ -57,11 +59,19 @@ export class BooksComponent implements OnInit {
   private getDialogConfig(): MatDialogConfig {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.direction = 'rtl';
+    dialogConfig.direction = 'ltr';
     dialogConfig.disableClose = false;
     dialogConfig.minHeight = 'fit-content'
     dialogConfig.minWidth = '200px'
     return dialogConfig;
+  }
+
+  errorAlert(title: string, text: string) {
+    Swal.fire({
+      icon: 'error',
+      title: title,
+      text: text,
+    })
   }
 
 }

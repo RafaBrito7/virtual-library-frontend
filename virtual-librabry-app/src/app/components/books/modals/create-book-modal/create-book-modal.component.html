@@ -1,15 +1,21 @@
 <h2 mat-dialog-title>Create a Book</h2>
 
 <mat-dialog-content [formGroup]="form">
-    <mat-form-field>
-        <input matInput
-                placeholder="Title"
-               formControlName="title">
+    <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" formControlName="title">
     </mat-form-field>
- 
 </mat-dialog-content>
-
-<mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
+<mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select [(ngModel)]="categorySelected" name="category" [disabled]="categoryList.length == 0">
+        <mat-option *ngFor="let category of categoryList" [value]="category">
+            {{category}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-dialog-actions class="mat-btn">
+    <button class="mat-raised-button" (click)="close()">Close</button>
+    <div fxFlex></div>
+    <button class="mat-raised-button mat-primary" (click)="save()">Save</button>
 </mat-dialog-actions>
