@@ -25,7 +25,6 @@ The front end is still under development, and the frontend permissions validatio
 - Create User
 - Delete User
 - Update User
-- Create Book
 - Delete Book
 - Rent Book
 - Refund Book
