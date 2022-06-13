@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostUrl: 'http://localhost:8080',
+  hostUrl: 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080',
   userUrl: '/api/user',
   bookUrl: '/api/book'
 };

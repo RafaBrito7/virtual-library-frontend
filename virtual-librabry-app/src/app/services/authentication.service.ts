@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
+  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080';
+
   public username: string;
   public password: string;
 
@@ -26,7 +28,7 @@ export class AuthenticationService {
       email: username,
       password: password
     };
-    return this.http.post(environment.hostUrl + `/login`, userDTO, this.httpOptions).pipe(map((response) => {
+    return this.http.post(this.basedUrl + `/login`, userDTO, this.httpOptions).pipe(map((response) => {
       this.username = username;
       this.password = password;
       console.log(response);

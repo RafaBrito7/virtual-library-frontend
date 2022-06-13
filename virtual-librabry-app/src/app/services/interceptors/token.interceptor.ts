@@ -15,12 +15,14 @@ import { throwError } from 'rxjs';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
+  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080';
+
   constructor(private userService : UserService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.userService.getLoggedUserToken();
     const requestUrl: Array<any> = request.url.split('/');
-    const apiUrl: Array<any> = environment.hostUrl.split('/');
+    const apiUrl: Array<any> = this.basedUrl.split('/');
  
     if (token && requestUrl[2] === apiUrl[2]) {
       request = request.clone({

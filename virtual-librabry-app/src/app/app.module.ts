@@ -18,6 +18,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { BooksComponent } from './components/books/books.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import { CreateBookModalComponent } from './components/books/modals/create-book-modal/create-book-modal.component';
+
 
 
 @NgModule({
@@ -27,7 +30,8 @@ import { BooksComponent } from './components/books/books.component';
     RegisterComponent,
     DashboardComponent,
     UsersComponent,
-    BooksComponent
+    BooksComponent,
+    CreateBookModalComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,8 @@ import { BooksComponent } from './components/books/books.component';
     ReactiveFormsModule,
     AngularMaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent],

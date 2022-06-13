@@ -9,6 +9,8 @@ import { UserService } from './user.service';
 })
 export class BookService {
 
+  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080/api/book';
+
   private token: string;
 
   private httpOptions: any;
@@ -32,6 +34,6 @@ export class BookService {
 
     fetchAllBooks(){
       this.buildHeaders();
-      return this.httpClient.get(environment.hostUrl + environment.bookUrl + `/list`, this.httpOptions);
+      return this.httpClient.get(this.basedUrl + `/list`, this.httpOptions);
     }
 }

@@ -10,6 +10,8 @@ import { AuthenticationService } from './authentication.service';
 })
 export class UserService{
 
+  private basedUrl = 'http://ec2-3-89-88-222.compute-1.amazonaws.com:8080/api/user';
+
   private token: string;
 
   private httpOptions: any;
@@ -29,12 +31,12 @@ export class UserService{
 
   getLoggedUser() {
     this.buildHeaders();
-    return this.httpClient.get(environment.hostUrl + environment.userUrl + `/logged`, this.httpOptions);
+    return this.httpClient.get(this.basedUrl + `/logged`, this.httpOptions);
   }
 
   fetchAllUsers(){
     this.buildHeaders();
-    return this.httpClient.get(environment.hostUrl + environment.userUrl + `/list`, this.httpOptions);
+    return this.httpClient.get(this.basedUrl + `/list`, this.httpOptions);
   }
 
   getLoggedUserToken(): any {
